@@ -1,0 +1,101 @@
+.switcher-area {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: -20%;
+    bottom: 0;
+    margin: auto;
+    width:20%;
+}
+.switcher-area:hover {
+    opacity: 1 !important;
+}
+.switcher-area .switched-options {
+    position: relative;
+    text-align: left;
+    background: #fff;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+}
+.switcher-area .config-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+    border-bottom: 3px double #bbb;
+    margin-bottom: 5px;
+}
+.switcher-area ul {
+    margin-bottom: 25px;
+}
+.switcher-area ul .active a {
+    color: #005885;
+    font-weight: 700;
+}
+.switcher-area ul .p {
+    font-weight: 400;
+    font-size: 12px;
+    color: #CCC;
+    margin-top: 10px;
+}
+.switcher-area ul li a {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #808080;
+}
+.switcher-area ul li a:hover {
+    color: #32c5d2;
+}
+.switcher-area ul.color-styles {
+    margin-top: 15px;
+}
+.switcher-area ul.color-styles li {
+    display: inline-block;
+    margin-right: 5px;
+}
+.switcher-area ul.color-styles li .default,
+.switcher-area ul.color-styles li .amaranth,
+.switcher-area ul.color-styles li .purple,
+.switcher-area ul.color-styles li .orange {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+.switcher-area ul.color-styles li .default {
+    background: #32c5d2;
+}
+.switcher-area ul.color-styles li .amaranth {
+    background: #ec3851;
+}
+.switcher-area ul.color-styles li .orange {
+    background: #ff5e00;
+}
+.switcher-area ul.color-styles li .purple {
+    background: #6e02af;
+}
+.switcher-area .switch-button {
+    opacity: 1 !important;
+    background: #00cb56;
+    text-align: center;
+    font-size:20px;
+    color: #FFF !important;
+    position: absolute;
+    overflow: hidden;
+    left: -118px;
+    top: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 1px 4px grey;
+    width: 200px;
+    line-height: 32px;
+    height: 32px;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(270deg);
+}
+.switcher-area .switch-button:hover {
+    color: #32c5d2;
+    cursor: pointer;
+}

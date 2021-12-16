@@ -1,0 +1,412 @@
+											-------------------
+											| SHIKSHAA APP 	  |
+											-------------------
+----------------------------------------------
+| MODULE 1 - LOGIN/SIGNUP/CONFIG/SUBSCRIPTION |
+-----------------------------------------------
+
+
+1. SEND OTP {FOR REGISTRATION}
+URL: http://teknikoglobal.in/tgschl/webservice/send_otp
+REQUEST:
+{
+	"phone":"9838700656",
+	"otp":"2837"
+}
+
+RESPONSE:
+[{"result":"success","otp":"2837","res":"success"}]
+
+2. REGISTER AS SCHOOL
+URL: http://teknikoglobal.in/tgschl/webservice/register_school
+REQUEST:
+{
+	"name":"Vibhas Mishra",
+	"email":"vibhas1326@gmail.com",
+	"phone":"9311620027",
+	"address":"B-1703, Ace City , Greater Noida",
+	"password":"qwerty"
+}
+
+RESPONSE:
+[{"result":"success","school_code":"VIXFG9B","schoolID":1}]
+
+3. REGISTER AS OTHER (TEACHER/STUDENT/PARENT)
+
+Note: type = teacher/student/parent
+URL: http://teknikoglobal.in/tgschl/webservice/register_other
+REQUEST:
+{
+	"type":"teacher",
+	"name":"Vibhas Mishra",
+	"email":"vibhas1326@gmail.com",
+	"phone":"9311620027",
+	"address":"B-1703, Ace City , Greater Noida",
+	"password":"qwerty",
+	"code":"VIXFG9B"
+}
+
+RESPONSE:
+[{"result":"success","school_code":"VIXFG9B","userID":1}]
+
+4. SCHOOL CONFIGURATION
+NOTE: attendance_type = daywise/subject
+	fees_fine_config = month/day
+	academic_year = current year and next year i.e 2018 & 2019 in dropdown.
+
+URL:
+http://teknikoglobal.in/tgschl/webservice/school_config
+
+REQUEST: 
+{
+	"schoolID":"1",
+	"school_name":"RAM NAIDU SCHOOL",
+	"school_prefix":"RNS",
+	"principal_name":"PAPAJI",
+	"principal_phone":"9898983965",
+	"principal_email":"vibhu@love.com",
+	"attendance_type":"daywise",
+	"academic_year":"2018",
+	"fees_fine_config":"month",
+	"fees_fine_amt":"100"
+}
+
+RESPONSE:
+[{"result":"success","message":"Update Successfully"}]
+
+5. MODULES
+URL: http://teknikoglobal.in/tgschl/webservice/modules
+REQUEST:
+{
+	"schoolID":"1"
+}
+
+RESPONSE:
+[{"result":"success","modules":[{"moduleID":"1","module_name":"Homework","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"0"},{"moduleID":"2","module_name":"Attendance","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"0"},{"moduleID":"3","module_name":"Attendance","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"0"},{"moduleID":"4","module_name":"Class Routine","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"0"},{"moduleID":"5","module_name":"Premium Chat","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"0"},{"moduleID":"6","module_name":"Library","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"799"},{"moduleID":"7","module_name":"Accounts & Fee","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"799"},{"moduleID":"8","module_name":"Camera","module_icon":"http:\/\/www.teknikoglobal.in\/tgschl\/uploads\/modules\/tuition-and-fees.png","short_description":"This is Test Description. This is Test Description. This is Test Description. This is Test Description. This is Test Description.","price":"499"}]}]
+
+
+6. SCHOOL SUBSCRIPTION
+URL: http://teknikoglobal.in/tgschl/webservice/school_subscription
+REQUEST: 
+{
+	"schoolID":"1",
+	"school_code":"VIXFG9B",
+	"modules":"1,2,3,4,5,6,7,8",
+	"amount":"1999",
+	"paid_status":"Y"
+}
+
+RESPONSE:
+[{"result":"success","subscriptionID":1,"message":"Successfully Subscribed"}]
+
+7. LOGIN
+NOTE: role = student/teacher/school/parent (this are not case sensetive)
+If status = N then show request approval screen
+URL : http://teknikoglobal.in/tgschl/webservice/login
+REQUEST : 
+{
+    "role": "teacher",
+    "username" : "VI2C8X8",
+    "password" : "123456",
+    "deviceID" : "test",
+    "deviceToken" : "test",
+    "deviceType" : "android"            
+}
+ 
+
+RESPONSE : 
+[{"result":"success","schoolID":"1","id":"1","name":"Vibhas Mishra","email":"vibhas1326@gmail.com","phone":"9311620027","status":"Y"}]
+
+
+8. SCHOOL HOME
+URL:
+http://teknikoglobal.in/tgschl/webservice/school_home
+
+REQUEST:
+{
+	"schoolID":"1"
+}
+
+RESPONSE:
+[{"result":"success","name":"Vibhas Mishra","email":"vibhas1326@gmail.com","subscription_status":"Y","is_config_setup":"Y","default_attendance":"subject"}]
+
+NOTE: IF is_config_set = N then redirect to configuration screen then same process
+IF subscription_status = N then redirect to module subscription screen then same process.
+If both Y then only dashboard visible.
+
+9. CHECK STUDENT SUBSCRIPTION
+URL:
+http://teknikoglobal.in/tgschl/webservice/check_student_subscription
+
+REQUEST:
+{
+	"schoolID":"1",
+	"studentID":"1"
+}
+
+RESPONSE:
+A) [{"result":"failure"}]
+
+B) [{"result":"success"}]
+
+10. SUBSCRIPTION PACKAGE
+URL:
+http://teknikoglobal.in/tgschl/webservice/subscription_package
+
+REQUEST:
+{
+	"schoolID":"1"
+}
+
+RESPONSE:
+[{"result":"success","subscription_amount":365,"service_tax":18,"product_service_charge":2}]
+
+NOTE: service_tax and service_charge is in PERCENTAGE, so you have to calculate and ADD AMOUNT IN subscription_amount for final_amount calculation.
+
+11. GET STUDENT SUBSCRIPTION
+NOTE: Only subscription succesful
+URL:
+http://teknikoglobal.in/tgschl/webservice/student_subscription
+
+REQUEST:
+{
+	"schoolID":"1",
+	"studentID":"1",
+	"amount":"438",
+	"paid_status":"Y"
+}
+
+RESPONSE:
+[{"result":"success"}]
+
+
+12. LIST CHILD
+URL:
+http://teknikoglobal.in/tgschl/webservice/child_list
+
+REQUEST:
+{
+	"parentID":"1"
+}
+
+RESPONSE:
+[{"result":"success","students":[{"studentID":"1","schoolID":"1","school_code":"VIXFG9B","name":"Chota Kshitij","email":"kshitij123@gmail.com","phone":"9090901234","address":"B-1703, Ace City , Greater Noida","subscription_status":"Y"}]}]
+
+13. ADD CHILD
+URL:
+http://teknikoglobal.in/tgschl/webservice/add_child
+
+REQUEST:
+{
+	"parentID":"1",
+	"school_code":"VIXFG9B",
+	"student_code":"CH9W8C9"
+}
+
+RESPONSE:
+[{"result":"success"}]
+
+14. TEACHER HOME
+URL:
+http://teknikoglobal.in/tgschl/webservice/teacher_home
+
+REQUEST:
+{
+	"schoolID":"1",
+	"teacherID":"1"
+}
+
+RESPONSE:
+[
+    {
+        "result": "success",
+        "name": "Vibhas Mishra",
+        "email": "vibhas1326@gmail.com",
+        "subscription_status": "Y",
+        "default_attendance": "daywise"
+    }
+]
+
+-------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------
+| MODULE 2 -  APPROVAL SYSTEM + ATTENDANCE  	|
+-------------------------------------------------
+
+15. APPROVAL REQUEST LIST
+URL: http://teknikoglobal.in/tgschl/webservice/get_approval_list
+REQUEST:
+{
+	"schoolID":"1"
+}
+
+RESPONSE:
+[{"result":"success","teachers":[{"teacherID":"1","name":"Vibhas Mishra","email":"vibhas1326@gmail.com","phone":"9311620027","address":"B-1703, Ace City , Greater Noida"}],"parents":[],"students":[]}]
+
+16. ACTION ON APPROVAL LIST
+NOTE: role = student/teacher/school/parent (this are not case sensetive)
+URL:
+http://teknikoglobal.in/tgschl/webservice/action_approval
+
+REQUEST:
+{
+	"schoolID":"1",
+	"ID":"1",
+	"role":"teacher",
+	"action":"Y"
+}
+
+RESPONSE:
+[{"result":"success","message":"Successfully Updated"}]
+
+17. UPDATE STUDENT DATA ON APPROVAL
+
+18. CLASS FOR ADMIN (FOR ALL CLASSES)
+URL:
+http://teknikoglobal.in/tgschl/webservice/get_classes_admin
+
+REQUEST:
+{
+	"schoolID":"1"
+}
+
+RESPONSE:
+[{"result":"success","classes":[{"classID":"1","class":"Nursey"},{"classID":"2","class":"LKG"},{"classID":"3","class":"UKG"},{"classID":"4","class":"1st"},{"classID":"5","class":"2nd"},{"classID":"6","class":"III"}]}]
+
+19. CLASS FOR TEACHER (FOR SPECIFIC CLASSES)
+URL:
+http://teknikoglobal.in/tgschl/webservice/get_classes_teacher
+
+REQUEST:
+{
+	"schoolID":"1",
+	"teacherID":"1"
+}
+
+RESPONSE:
+[{"result":"success","classes":[{"classID":"1","class":"Nursey"},{"classID":"2","class":"LKG"},{"classID":"3","class":"UKG"},{"classID":"4","class":"1st"},{"classID":"5","class":"2nd"},{"classID":"6","class":"III"}]}]
+
+
+20. SECTION CLASSWISE
+NOTE: role = teacher / school
+URL:
+http://teknikoglobal.in/tgschl/webservice/get_section
+
+REQUEST:
+{
+	"schoolID":"1",
+	"userID":"1",
+	"classID":"1",
+	"role":"teacher"
+}
+
+RESPONSE:
+[{"result":"success","section":[{"sectionID":"1","section":"A"},{"sectionID":"2","section":"B"},{"sectionID":"3","section":"C"}]}]
+
+21. GET SUBJECT BY TEACHER
+NOTE: IF default_attendance = subject then use it for attendance
+URL:
+http://teknikoglobal.in/tgschl/webservice/get_subject
+
+REQUEST:
+{
+	"schoolID":"1",
+	"userID":"1",
+	"classID":"1",
+	"sectionID":"1",
+	"role":"teacher"
+}
+
+RESPONSE:
+[{"result":"success","subject":[{"subjectID":"1","subject_name":"Subject 1","subject_code":"SDGJ45","type":"optional","passmark":"33","finalmark":"100"},{"subjectID":"2","subject_name":"Subject 2","subject_code":"SDGJ65","type":"optional","passmark":"33","finalmark":"100"}]}]
+
+
+22. GET STUDENT SECTIONWISE
+URL:
+http://teknikoglobal.in/tgschl/webservice/get_student_list
+
+REQUEST:
+{
+   "schoolID":"1",
+   "classID":"1",
+   "userID":"1",
+   "sectionID":"1",
+   "subjectID":"1"
+}
+
+
+RESPONSE:
+[{"result":"success","students":[{"school_code":"VIXFG9B","studentID":"1","name":"Chota Kshitij","email":"kshitij123@gmail.com","phone":"9090901234","subscription_status":"Y"}]}]
+
+
+23. ADD ATTENDNACE
+URL:
+http://teknikoglobal.in/tgschl/webservice/add_attendance
+
+REQUEST:
+{
+   "schoolID":"1",
+   "classID":"1",
+   "userID":"1",
+   "usertype":"teacher",
+   "sectionID":"1",
+   "subjectID":"1",
+   "students":"1:P,2:A",
+   "att_date":"2018-10-09"
+}
+
+
+RESPONSE:
+[{"result":"success"}]
+
+
+23. VIEW ATTENDANCE
+
+24. VIEW ATTENDANCE BY STUDENT
+
+25. TEACHER LIST
+
+26. ADD TEACHER ATTENDANCE
+
+27. VIEW TEACHER ATTENDANCE
+
+28. ABSENT REPORT
+
+-----------------------------------------------------------------
+| MODULE 3 - SUBJECT SYLLABUS +  CONTACT DIRECTORY + SUGGESTION |
+-----------------------------------------------------------------
+
+29. CONTACT LIST
+
+30. LIS STUDENT SUGGESTION
+
+31. ADD SUGGESTION
+
+32. VIEW SUGGESTION
+
+33. LIST TEACHER SUGGESTION
+
+34. LIST ADMIN SUGGESTION
+
+35. REPLY SUGGESTION
+
+36. SUBJECT LIST 
+URL:
+
+
+
+---------------------------------------------
+| MODULE 4 - ANNOUCEMENT + EVENTS + GALLERY  |
+---------------------------------------------
+
+------------------------------
+| MODULE 5 - QUIZ + HOMEWORK  |
+------------------------------
+
+----------------------------------------------
+| MODULE 6 - ROUTINE + EXAM RESULT + LIBRARY |
+----------------------------------------------
+
+--------------------------------------
+| MODULE 7 - ACCOUNTS & FEE + CAMERA |
+--------------------------------------

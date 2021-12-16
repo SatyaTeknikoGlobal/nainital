@@ -1,0 +1,21 @@
+DirectoryIndex index.php
+
+Options -Indexes
+
+RewriteEngine on
+
+RewriteCond $1 !^(index\.php|assets|uploads|cc_php|resources|robots\.txt)
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^http://www.teknikoglobal.com/tekniko_sub_domains/nainital [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.teknikoglobal.com/tekniko_sub_domains/nainital/$1 [R,L]
+
+
+
